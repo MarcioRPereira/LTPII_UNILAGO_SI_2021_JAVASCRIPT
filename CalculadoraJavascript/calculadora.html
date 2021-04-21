@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <title>Calculadora</title>
+    <script src="calculadora.js"></script>
+</head>
+
+<body>
+    <span>Número 1:</span>
+    <input type="text" id="numero1" onblur="validarNumero(this);"><br />
+    <span>Número 2:</span>
+    <input type="text" id="numero2" onblur="validarNumero(this);"><br />
+    <input type="button" value="+" onclick="calcular('+')" />
+    <input type="button" value="-" onclick="calcular('-')" />
+    <input type="button" value="*" onclick="calcular('*')" />
+    <input type="button" value="/" onclick="calcular('/')" />
+    <br />
+    <span>Resultado:</span>
+    <input type="text" id="resultado">
+</body>
+
+</html>
