@@ -16,67 +16,72 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script src="calculadora.js"></script>
+    <style>
+        .botao {
+            width: 75px;
+            height: 75px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container" style="width: 500px;">
-        <div class="row">
-            <input type="text" style="width: 300px;height: 50px; text-align: right;" id="resultado" readonly="true">
-        </div>
-        <div class="row">
-            <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-primary" value="7" onclick="clickNumero('7');">
-            </div>
-            <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-primary" value="8" onclick="clickNumero('8');">
-            </div>
-            <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-primary" value="9" onclick="clickNumero('9');">
-            </div>
-            <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-secondary" value="/" onclick="calcular('/')" />
-            </div>
-        </div>
+    <div class="container">
+        <input type="text" style="width: 400px; height: 75px; text-align: right; font-size: xx-large;" id="resultado"
+            readonly="true">
         <div class="row">
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-primary" value="4" onclick="clickNumero('4');">
+                <input type="button" class="btn btn-lg btn-primary botao" value="7" onclick="clickNumero('7');">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-primary" value="5" onclick="clickNumero('5');">
+                <input type="button" class="btn btn-lg btn-primary botao" value="8" onclick="clickNumero('8');">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-primary" value="6" onclick="clickNumero('6');">
+                <input type="button" class="btn btn-lg btn-primary botao" value="9" onclick="clickNumero('9');">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-secondary" value="*" onclick="calcular('*')" />
+                <input type="button" class="btn btn-lg btn-secondary botao" value="/" onclick="calcular('/')" />
             </div>
         </div>
         <div class="row">
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-primary" value="1" onclick="clickNumero('1');">
+                <input type="button" class="btn btn-lg btn-primary botao" value="4" onclick="clickNumero('4');">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-primary" value="2" onclick="clickNumero('2');">
+                <input type="button" class="btn btn-lg btn-primary botao" value="5" onclick="clickNumero('5');">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-primary" value="3" onclick="clickNumero('3');">
+                <input type="button" class="btn btn-lg btn-primary botao" value="6" onclick="clickNumero('6');">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-secondary" value="+" onclick="calcular('+')" />
+                <input type="button" class="btn btn-lg btn-secondary botao" value="*" onclick="calcular('*')" />
             </div>
         </div>
         <div class="row">
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-secondary" value="=">
+                <input type="button" class="btn btn-lg btn-primary botao" value="1" onclick="clickNumero('1');">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-primary" value="0" onclick="clickNumero('0');">
+                <input type="button" class="btn btn-lg btn-primary botao" value="2" onclick="clickNumero('2');">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-primary" value="." onclick="clickDecimal();">
+                <input type="button" class="btn btn-lg btn-primary botao" value="3" onclick="clickNumero('3');">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-secondary" value="-" onclick="calcular('-')" />
+                <input type="button" class="btn btn-lg btn-secondary botao" value="+" onclick="calcular('+')" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-*-3 p-3">
+                <input type="button" class="btn btn-lg btn-secondary botao" value="=">
+            </div>
+            <div class="col-*-3 p-3">
+                <input type="button" class="btn btn-lg btn-primary botao" value="0" onclick="clickNumero('0');">
+            </div>
+            <div class="col-*-3 p-3">
+                <input type="button" class="btn btn-lg btn-primary botao" value="." onclick="clickDecimal();">
+            </div>
+            <div class="col-*-3 p-3">
+                <input type="button" class="btn btn-lg btn-secondary botao" value="-" onclick="calcular('-')" />
             </div>
         </div>
     </div>
