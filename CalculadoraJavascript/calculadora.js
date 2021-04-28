@@ -60,3 +60,18 @@ function limparCampos() {
     document.getElementById('numero2').value = "";
     document.getElementById('numero1').focus();
 }
+
+function clickNumero(valor) {
+    setValor(valor);
+}
+
+function clickDecimal() {
+    if (document.getElementById('numero1').value.indexOf('.') < 0) {
+        setValor(".");
+    }
+}
+
+function setValor(valor) {
+    let valorAtual = document.getElementById('numero1').value;
+    document.getElementById('numero1').value = valorAtual + valor;
+}
