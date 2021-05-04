@@ -1,3 +1,6 @@
+var operacao = '';
+var auxInputClick = 'numero1';
+
 function somarDoisNumeros(numero1, numero2) {
     return numero1 + numero2;
 }
@@ -18,25 +21,25 @@ function dividirDoisNumeros(numero1, numero2) {
     }
 }
 
-function calcular(operacao) {
+function calcular() {
     let numero1, numero2;
     numero1 = Number(document.getElementById('numero1').value);
     numero2 = Number(document.getElementById('numero2').value);
 
     if (validarSeAsEntradasSaoVazias(numero1, numero2)) {
         let resultado;
-        if (operacao == "+") {
+        if (this.operacao == "+") {
             resultado = somarDoisNumeros(numero1, numero2);
-        } else if (operacao == "-") {
+        } else if (this.operacao == "-") {
             resultado = subtrairDoisNumeros(numero1, numero2);
-        } else if (operacao == "*") {
+        } else if (this.operacao == "*") {
             resultado = multiplicarDoisNumeros(numero1, numero2);
-        } else if (operacao == "/") {
+        } else if (this.operacao == "/") {
             resultado = dividirDoisNumeros(numero1, numero2);
         }
 
         document.getElementById('resultado').value = resultado;
-        limparCampos();
+        estadoInicial();
     } else {
         alert('Digite os dois números');
     }
@@ -58,7 +61,13 @@ function validarSeAsEntradasSaoVazias(numero1, numero2) {
 function limparCampos() {
     document.getElementById('numero1').value = "";
     document.getElementById('numero2').value = "";
+}
+
+function estadoInicial() {
+    limparCampos();
     document.getElementById('numero1').focus();
+    this.operacao = '';
+    this.auxInputClick = 'numero1';
 }
 
 function clickNumero(valor) {
@@ -66,12 +75,17 @@ function clickNumero(valor) {
 }
 
 function clickDecimal() {
-    if (document.getElementById('numero1').value.indexOf('.') < 0) {
+    if (document.getElementById(this.auxInputClick).value.indexOf('.') < 0) {
         setValor(".");
     }
 }
 
 function setValor(valor) {
-    let valorAtual = document.getElementById('numero1').value;
-    document.getElementById('numero1').value = valorAtual + valor;
+    let valorAtual = document.getElementById(this.auxInputClick).value;
+    document.getElementById(this.auxInputClick).value = valorAtual + valor;
+}
+
+function clickOperacao(paramOperacao) {
+    this.operacao = paramOperacao;
+    this.auxInputClick = 'numero2';
 }
