@@ -1,5 +1,7 @@
 var operacao = '';
-var auxInputClick = 'numero1';
+var isInputNumero1 = true;
+var numero1 = '';
+var numero2 = '';
 
 function somarDoisNumeros(numero1, numero2) {
     return numero1 + numero2;
@@ -23,8 +25,8 @@ function dividirDoisNumeros(numero1, numero2) {
 
 function calcular() {
     let numero1, numero2;
-    numero1 = Number(document.getElementById('numero1').value);
-    numero2 = Number(document.getElementById('numero2').value);
+    numero1 = Number(this.numero1);
+    numero2 = Number(this.numero2);
 
     if (validarSeAsEntradasSaoVazias(numero1, numero2)) {
         let resultado;
@@ -38,36 +40,26 @@ function calcular() {
             resultado = dividirDoisNumeros(numero1, numero2);
         }
 
-        document.getElementById('resultado').value = resultado;
-        estadoInicial();
+        setInputResultado(resultado);
+        estadoInicialPropriedades();
     } else {
         alert('Digite os dois números');
     }
 }
 
-function validarNumero(inputText) {
-    let valorConvertido = Number(inputText.value);
-    if (isNaN(valorConvertido)) {
-        alert('Digite um número válido.');
-        inputText.value = "";
-        inputText.focus();
-    }
+function setInputResultado(valor) {
+    document.getElementById('resultado').value = valor;
 }
 
 function validarSeAsEntradasSaoVazias(numero1, numero2) {
     return !((numero1 == '') || (numero2 == ''));
 }
 
-function limparCampos() {
-    document.getElementById('numero1').value = "";
-    document.getElementById('numero2').value = "";
-}
-
-function estadoInicial() {
-    limparCampos();
-    document.getElementById('numero1').focus();
+function estadoInicialPropriedades() {
     this.operacao = '';
-    this.auxInputClick = 'numero1';
+    this.isInputNumero1 = true;
+    this.numero1 = '';
+    this.numero2 = '';
 }
 
 function clickNumero(valor) {
@@ -75,17 +67,34 @@ function clickNumero(valor) {
 }
 
 function clickDecimal() {
-    if (document.getElementById(this.auxInputClick).value.indexOf('.') < 0) {
+    let valorValidar = '';
+    if (this.isInputNumero1) {
+        valorValidar = this.numero1;
+    } else {
+        valorValidar = this.numero2;
+    }
+
+    if (valorValidar.indexOf('.') < 0) {
         setValor(".");
     }
 }
 
 function setValor(valor) {
-    let valorAtual = document.getElementById(this.auxInputClick).value;
-    document.getElementById(this.auxInputClick).value = valorAtual + valor;
+    if (this.isInputNumero1) {
+        this.numero1 = this.numero1 + valor;
+        setInputResultado(this.numero1);
+    } else {
+        this.numero2 = this.numero2 + valor;
+        setInputResultado(this.numero2);
+    }
 }
 
 function clickOperacao(paramOperacao) {
     this.operacao = paramOperacao;
-    this.auxInputClick = 'numero2';
+    this.isInputNumero1 = false;
+}
+
+function limparCalculadora() {
+    estadoInicialPropriedades();
+    setInputResultado('');
 }
