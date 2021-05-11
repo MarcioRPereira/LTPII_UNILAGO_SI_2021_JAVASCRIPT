@@ -26,8 +26,10 @@
 
 <body>
     <div class="container">
-        <input type="text" style="width: 400px; height: 75px; text-align: right; font-size: xx-large;" id="resultado"
-            readonly="true">
+        <div style="border: 1px solid #000; width: 400px;">
+            <div id="divCalculoAtual" style="width:395px; height:30px; font-size: small; text-align: right;"></div>
+            <div id="divResultado" style="width: 395px; height: 75px; text-align: right; font-size: xx-large;"></div>
+        </div>
         <div class="row">
             <div class="col-*-3 p-3">
                 <input type="button" class="btn btn-lg btn-primary botao" value="7" onclick="clickNumero('7');">
@@ -53,7 +55,7 @@
                 <input type="button" class="btn btn-lg btn-primary botao" value="6" onclick="clickNumero('6');">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-secondary botao" value="*" onclick="clickOperacao('*')" />
+                <input type="button" class="btn btn-lg btn-secondary botao" value="*" onclick="clickOperacao('*');" />
             </div>
         </div>
         <div class="row">
@@ -67,7 +69,7 @@
                 <input type="button" class="btn btn-lg btn-primary botao" value="3" onclick="clickNumero('3');">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-secondary botao" value="+" onclick="clickOperacao('+')" />
+                <input type="button" class="btn btn-lg btn-secondary botao" value="+" onclick="clickOperacao('+');" />
             </div>
         </div>
         <div class="row">
@@ -81,7 +83,7 @@
                 <input type="button" class="btn btn-lg btn-primary botao" value="." onclick="clickDecimal();">
             </div>
             <div class="col-*-3 p-3">
-                <input type="button" class="btn btn-lg btn-secondary botao" value="-" onclick="clickOperacao('-')" />
+                <input type="button" class="btn btn-lg btn-secondary botao" value="-" onclick="clickOperacao('-');" />
             </div>
         </div>
         <div class="row">
