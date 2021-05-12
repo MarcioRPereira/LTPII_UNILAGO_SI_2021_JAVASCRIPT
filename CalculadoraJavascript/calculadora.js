@@ -22,31 +22,7 @@ function dividirDoisNumeros(numero1, numero2) {
     }
 }
 
-function calcular() {
-    let numero1, numero2;
-    numero1 = Number(this.calculoAtual.primeiroNumero);
-    numero2 = Number(this.calculoAtual.segundoNumero);
 
-    if (validarSeAsEntradasSaoVazias(numero1, numero2)) {
-        let resultado;
-        if (this.calculoAtual.operacao == "+") {
-            resultado = somarDoisNumeros(numero1, numero2);
-        } else if (this.calculoAtual.operacao == "-") {
-            resultado = subtrairDoisNumeros(numero1, numero2);
-        } else if (this.calculoAtual.operacao == "*") {
-            resultado = multiplicarDoisNumeros(numero1, numero2);
-        } else if (this.calculoAtual.operacao == "/") {
-            resultado = dividirDoisNumeros(numero1, numero2);
-        }
-
-        setResultado(resultado);
-        setCalculoAtual();
-        salvarHistorico();
-        estadoInicialPropriedades();
-    } else {
-        alert('Digite os dois números');
-    }
-}
 
 function salvarHistorico() {
     this.historico.push(this.calculoAtual);
@@ -107,4 +83,46 @@ function limparCalculadora() {
     estadoInicialPropriedades();
     setResultado('');
     document.getElementById('divCalculoAtual').innerHTML = '';
+}
+
+function clickCalcular() {
+    let resultado = calcular(this.calculoAtual);
+    if (resultado == '') return;
+
+    setResultado(resultado);
+    setCalculoAtual();
+    salvarHistorico();
+    exibirHistorico();
+    estadoInicialPropriedades();
+}
+
+function exibirHistorico() {
+    let html = '';
+    for (var iHistorico = 0; iHistorico < this.historico.length; iHistorico++) {
+        let calculo = this.historico[iHistorico];
+        let valorOperacao = calculo.primeiroNumero + ' ' + calculo.operacao + ' ' + calculo.segundoNumero + ' = ';
+        html = html +
+            "<div>" + valorOperacao + calcular(calculo) + "</div>";
+    }
+    document.getElementById("divHistorico").innerHTML = html;
+}
+
+function calcular(objetoCalculo) {
+    let resultado = '';
+    let numero1 = Number(objetoCalculo.primeiroNumero);
+    let numero2 = Number(objetoCalculo.segundoNumero);
+    if (validarSeAsEntradasSaoVazias(numero1, numero2)) {
+        if (objetoCalculo.operacao == "+") {
+            resultado = somarDoisNumeros(numero1, numero2);
+        } else if (objetoCalculo.operacao == "-") {
+            resultado = subtrairDoisNumeros(numero1, numero2);
+        } else if (objetoCalculo.operacao == "*") {
+            resultado = multiplicarDoisNumeros(numero1, numero2);
+        } else if (objetoCalculo.operacao == "/") {
+            resultado = dividirDoisNumeros(numero1, numero2);
+        }
+    } else {
+        alert('Digite os dois números');
+    }
+    return resultado;
 }
