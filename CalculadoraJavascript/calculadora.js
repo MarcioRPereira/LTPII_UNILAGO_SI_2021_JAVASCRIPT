@@ -22,8 +22,6 @@ function dividirDoisNumeros(numero1, numero2) {
     }
 }
 
-
-
 function salvarHistorico() {
     this.historico.push(this.calculoAtual);
 }
@@ -32,8 +30,8 @@ function setResultado(valor) {
     document.getElementById('divResultado').innerHTML = valor;
 }
 
-function setCalculoAtual() {
-    let valor = this.calculoAtual.primeiroNumero + ' ' + this.calculoAtual.operacao + ' ' + this.calculoAtual.segundoNumero + ' =';
+function setCalculoAtual(objCalculo) {
+    let valor = objCalculo.primeiroNumero + ' ' + objCalculo.operacao + ' ' + objCalculo.segundoNumero + ' =';
     document.getElementById('divCalculoAtual').innerHTML = valor;
 }
 
@@ -76,7 +74,7 @@ function setValor(valor) {
 function clickOperacao(paramOperacao) {
     this.calculoAtual.operacao = paramOperacao;
     this.isInputNumero1 = false;
-    setCalculoAtual();
+    setCalculoAtual(this.calculoAtual);
 }
 
 function limparCalculadora() {
@@ -90,7 +88,7 @@ function clickCalcular() {
     if (resultado == '') return;
 
     setResultado(resultado);
-    setCalculoAtual();
+    setCalculoAtual(this.calculoAtual);
     salvarHistorico();
     exibirHistorico();
     estadoInicialPropriedades();
@@ -101,10 +99,18 @@ function exibirHistorico() {
     for (var iHistorico = 0; iHistorico < this.historico.length; iHistorico++) {
         let calculo = this.historico[iHistorico];
         let valorOperacao = calculo.primeiroNumero + ' ' + calculo.operacao + ' ' + calculo.segundoNumero + ' = ';
+        let jsonCalculo = JSON.stringify(calculo);
         html = html +
-            "<div>" + valorOperacao + calcular(calculo) + "</div>";
+            "<div onclick='refazerCalculoPeloHistorico(" + jsonCalculo + ")'>" + valorOperacao + calcular(calculo) + "</div>";
     }
     document.getElementById("divHistorico").innerHTML = html;
+}
+
+function refazerCalculoPeloHistorico(jsonCalculo) {
+    let resultado = calcular(jsonCalculo);
+    setResultado(resultado);
+    setCalculoAtual(jsonCalculo);
+    estadoInicialPropriedades();
 }
 
 function calcular(objetoCalculo) {
@@ -125,4 +131,24 @@ function calcular(objetoCalculo) {
         alert('Digite os dois números');
     }
     return resultado;
+}
+
+function capturarEntradaPeloTeclado(event) {
+    if (isNumero(event.keyCode)) {
+        clickNumero(event.key);
+    } else if (isOperador(event.keyCode)) {
+        clickOperacao(event.key);
+    } else if (event.key == '.') {
+        clickDecimal();
+    } else if (event.keyCode == '13') {
+        clickCalcular();
+    }
+}
+
+function isNumero(keyCode) {
+    return ((keyCode >= 96) && (keyCode <= 105));
+}
+
+function isOperador(keyCode) {
+    return ((keyCode == 106) || (keyCode == 107) || (keyCode == 109) || (keyCode == 111));
 }
